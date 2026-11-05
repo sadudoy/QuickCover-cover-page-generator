@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Cover — Static Assignment Cover</title>
+  <link rel="stylesheet" href="css/cover.css">
+</head>
+<body>
+  <main class="preview-stage">
+    <article class="a4-cover" data-cover-type="assignment">
+      <!-- Institutional Header (2 lines as observed in reference demo) -->
+      <h1 class="university-header" data-field="university-name">
+        Bangladesh Army University of Science and Technology<br>(BAUST), Saidpur
+      </h1>
+      <h2 class="department-header" data-field="department-name">Department of Computer Science and Engineering (CSE)</h2>
+
+      <!-- Institutional Logo Placeholder (Inline SVG exactly 36.78mm x 35.97mm; no external asset) -->
+      <div class="logo-box" aria-label="University Logo Placeholder">
+        <svg viewBox="0 0 139 136" width="36.78mm" height="35.97mm" xmlns="http://www.w3.org/2000/svg">
+          <rect width="139" height="136" fill="#e5e7eb" stroke="#9ca3af" stroke-width="2" rx="4"/>
+          <text x="50%" y="45%" text-anchor="middle" dominant-baseline="middle" font-family="'Times New Roman', Times, serif" font-size="16" font-weight="bold" fill="#4b5563">LOGO</text>
+          <text x="50%" y="65%" text-anchor="middle" dominant-baseline="middle" font-family="'Times New Roman', Times, serif" font-size="11" fill="#6b7280">36.8 × 36 mm</text>
+        </svg>
+      </div>
+
+      <!-- Title Banner & Measured Underline Bar -->
+      <h3 class="title-banner" data-field="cover-title">Assignment</h3>
+      <div class="title-underline"></div>
+
+      <!-- Metadata Section: Course & Assignment Details with Dedicated Colon Column at x = 61.95mm -->
+      <section class="metadata-section">
+        <div class="metadata-row meta-row-1">
+          <span class="metadata-label">Course Code</span>
+          <span class="metadata-colon">:</span>
+          <span class="metadata-value" data-field="course-code">CSE 3100</span>
+        </div>
+        <div class="metadata-row meta-row-2">
+          <span class="metadata-label">Course Title</span>
+          <span class="metadata-colon">:</span>
+          <span class="metadata-value" data-field="course-title">Database Systems</span>
+        </div>
+        <div class="metadata-row meta-row-3">
+          <span class="metadata-label">Assignment no.</span>
+          <span class="metadata-colon">:</span>
+          <span class="metadata-value" data-field="assignment-no">01</span>
+        </div>
+        <div class="metadata-row meta-row-4">
+          <span class="metadata-label">Assignment Title</span>
+          <span class="metadata-colon">:</span>
+          <span class="metadata-value" data-field="assignment-title">Relational Algebra and Query Optimization</span>
+        </div>
+        <div class="metadata-row meta-row-5">
+          <span class="metadata-label">Comment</span>
+          <span class="metadata-colon">:</span>
+        </div>
+      </section>
+
+      <!-- Teacher Comment / Evaluation Area -->
+      <div class="comment-box" data-field="comment-box" aria-label="Teacher Comment Area"></div>
+
+      <!-- Left Card: Submitted By (Student Information - 4 rows) -->
+      <section class="card card-submitted-by" aria-labelledby="heading-submitted-by">
+        <div class="card-title-wrap">
+          <h4 id="heading-submitted-by" class="card-title">Submitted By:</h4>
+          <span class="card-title-underline"></span>
+        </div>
+
+        <div class="card-field-row sub-by-row-name">
+          <span class="card-field-label">Name:</span>
+          <span class="card-field-value" data-field="student-name">Md. Student Name</span>
+        </div>
+
+        <div class="card-field-row sub-by-row-id">
+          <span class="card-field-label">ID:</span>
+          <span class="card-field-value" data-field="student-id">210101001</span>
+        </div>
+
+        <div class="card-field-row sub-by-row-level level-term-inline">
+          <span class="level-sub-col">
+            <span class="card-field-label">Level:</span>
+            <span class="card-field-value" data-field="level">3</span>
+          </span>
+          <span class="term-sub-col">
+            <span class="card-field-label">Term:</span>
+            <span class="card-field-value" data-field="term">I</span>
+          </span>
+        </div>
+
+        <div class="card-field-row sub-by-row-sub-date">
+          <span class="card-field-label">Submission Date:</span>
+          <span class="card-field-value" data-field="submission-date">11/11/2026</span>
+        </div>
+      </section>
+
+      <!-- Right Card: Submitted To (Teacher Information) -->
+      <section class="card card-submitted-to" aria-labelledby="heading-submitted-to">
+        <div class="card-title-wrap">
+          <h4 id="heading-submitted-to" class="card-title">Submitted To:</h4>
+          <span class="card-title-underline"></span>
+        </div>
+
+        <!-- Single Teacher Entry (Matches reference template) -->
+        <div class="card-field-row sub-to-row-teacher">
+          <span class="card-field-label">Teacher Name:</span>
+          <span class="card-field-value" data-field="teacher-name">Md. Teacher Name</span>
+        </div>
+
+        <div class="card-field-row sub-to-row-desig">
+          <span class="card-field-label">Designation:</span>
+          <span class="card-field-value" data-field="teacher-designation">Assistant Professor</span>
+        </div>
+
+        <div class="signature-row sub-to-row-sign">
+          <span class="card-field-label">Signature &amp; Date:</span>
+          <span class="signature-line">&nbsp; _________________</span>
+        </div>
+      </section>
+    </article>
+
+    <!-- Note outside .a4-cover for screen preview context -->
+    <aside class="preview-banner">
+      <strong>Static preview — Phase 2: Assignment variant.</strong>
+      <span>(Exact ISO A4 dimensions: 210 × 297 mm)</span>
+      <a href="cover-lab.html">&larr; Switch to Lab Report Cover</a>
+    </aside>
+  </main>
+</body>
+</html>

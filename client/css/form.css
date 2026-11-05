@@ -1,0 +1,448 @@
+/* Quick Cover — Tool Page (create.html) Styling (UI Reference Design Pattern) */
+
+.editor-main {
+  background-color: var(--qc-editor-bg);
+  min-height: calc(100vh - 68px);
+}
+
+.workspace {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: 420px minmax(0, 1fr);
+  gap: 16px;
+}
+
+/* Panels */
+.panel {
+  background: var(--qc-surface);
+  border: 1px solid var(--qc-line);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.form-panel {
+  padding: 22px;
+  height: fit-content;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form-header .panel-title {
+  margin: 0;
+}
+
+.panel-title {
+  display: block;
+  font-weight: 750;
+  font-size: 20px;
+  color: var(--qc-ink);
+  margin: 0 0 20px;
+  letter-spacing: -0.4px;
+}
+
+/* Form Fields */
+.field {
+  margin-bottom: 16px;
+}
+
+.field label,
+.field-label {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #39445a;
+  margin-bottom: 7px;
+}
+
+.field input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),
+.field select,
+.field textarea {
+  width: 100%;
+  height: 44px;
+  border: 1px solid #d9deea;
+  border-radius: 7px;
+  padding: 0 12px;
+  color: #202a3c;
+  background: #ffffff;
+  font-size: 16px;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: border-color 120ms ease;
+}
+
+.field textarea {
+  height: auto;
+  min-height: 72px;
+  padding: 10px 12px;
+  resize: vertical;
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: #cbd5e1;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--qc-blue);
+  outline: 2px solid var(--qc-blue);
+  outline-offset: 1px;
+  box-shadow: none;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Document Type Segmented Toggle */
+.segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.segmented-btn {
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 0 !important;
+}
+
+.segmented-btn input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.segmented-btn span {
+  width: 100%;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d9deea;
+  background: #ffffff;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #344054;
+  transition: all 120ms ease;
+  user-select: none;
+}
+
+.segmented-btn:hover span {
+  border-color: #cbd5e1;
+}
+
+.segmented-btn input[type="radio"]:checked + span {
+  background: var(--qc-blue);
+  border-color: var(--qc-blue);
+  color: #ffffff;
+}
+
+.segmented-btn input[type="radio"]:focus-visible + span {
+  outline: 2px solid var(--qc-blue);
+  outline-offset: 1px;
+}
+
+/* Dynamic Multi-Teacher Form List */
+#teachers-fieldset {
+  border: 1px solid var(--qc-line);
+  border-radius: 8px;
+  padding: 14px;
+  background: #f8fafc;
+}
+
+#teachers-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.teacher-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid #d9deea;
+}
+
+.teacher-row label {
+  flex: 1;
+  min-width: 0;
+  margin-bottom: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--qc-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.teacher-row input {
+  width: 100%;
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid #d9deea;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #202a3c;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.teacher-row input:focus {
+  border-color: var(--qc-blue);
+  outline: 2px solid var(--qc-blue);
+  outline-offset: 1px;
+  box-shadow: none;
+}
+
+.t-remove {
+  height: 38px;
+  padding: 0 12px;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 600;
+  color: #b91c1c;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 120ms ease, opacity 120ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.t-remove:hover:not(:disabled) {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.t-remove:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background-color: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #94a3b8;
+}
+
+/* Logo Upload & Actions */
+.logo-upload-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.logo-btn-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.error-text {
+  font-size: 13px;
+  color: #b91c1c;
+  display: block;
+  min-height: 1.2em;
+}
+
+/* Storage Status Line & Hints */
+.storage-status {
+  margin: 16px 0 0;
+  font-size: 13px;
+  color: var(--qc-muted);
+  min-height: 1.2em;
+  line-height: 1.4;
+  transition: color 120ms ease;
+}
+
+.storage-status.saved {
+  color: #15803d;
+}
+
+.storage-status.warning {
+  color: #b45309;
+}
+
+.storage-status.error {
+  color: #b91c1c;
+}
+
+.hint {
+  font-size: 13px;
+  color: #8a93a3;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* Preview Panel & Viewport Framing */
+.preview-panel {
+  padding: 18px;
+  background: var(--qc-preview-bg);
+  border: 1px solid var(--qc-line);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 700px;
+}
+
+.preview-toolbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  color: #626d80;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.paper-wrap {
+  width: min(100%, 650px);
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.preview-viewport {
+  width: 100%;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #e7eaf0;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.08);
+  padding: 16px;
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+#cover-preview {
+  transform-origin: top left;
+}
+
+.editor-note {
+  font-size: 13px;
+  color: #7a8495;
+  margin-top: 14px;
+  text-align: center;
+}
+
+/* Image inside preview logo box */
+.logo-box img.uploaded-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+/* Hide helper */
+.is-hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Preview Overrides (Strictly Scoped to #cover-preview for Phase 4)
+   ========================================================================== */
+
+#cover-preview .card-submitted-to,
+#cover-preview .card-submitted-by {
+  height: auto;
+  min-height: 66.13mm;
+}
+
+#cover-preview [data-cover-type="assignment"] .card-submitted-to,
+#cover-preview [data-cover-type="assignment"] .card-submitted-by {
+  min-height: 58.64mm;
+}
+
+#cover-preview .teachers-preview {
+  position: absolute;
+  left: 2.8mm;
+  right: 2.8mm;
+  top: 11.39mm;
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+  font-size: 12pt;
+  font-weight: 700;
+  font-family: "Times New Roman", Times, serif;
+}
+
+#cover-preview [data-cover-type="assignment"] .teachers-preview {
+  top: 9.19mm;
+}
+
+#cover-preview .teacher-entry > div {
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+#cover-preview .teacher-entry .card-field-value {
+  margin-left: 6px;
+  font-weight: 700;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 850px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+  .form-panel {
+    grid-row: 1;
+  }
+  .preview-panel {
+    grid-row: 2;
+    min-height: 660px;
+  }
+}
+
+@media (max-width: 520px) {
+  .workspace {
+    padding: 10px;
+    gap: 10px;
+  }
+  .form-panel {
+    padding: 15px;
+  }
+  .preview-panel {
+    padding: 10px;
+    min-height: 500px;
+  }
+  .paper-wrap {
+    padding: 0;
+  }
+  .two-col {
+    gap: 8px;
+  }
+  .teacher-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .t-remove {
+    align-self: flex-end;
+  }
+}

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Cover — Create</title>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/cover.css">
+  <link rel="stylesheet" href="css/form.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <noscript>
+    <div style="background:#fee2e2; color:#991b1b; padding:16px; text-align:center; font-weight:bold;">
+      Notice: Quick Cover requires JavaScript for interactive form controls and live preview.
+    </div>
+  </noscript>
+
+  <!-- Shared Header (Tool Page) -->
+  <header class="site-header">
+    <div class="container site-header-inner">
+      <a class="brand" href="index.html" aria-label="Quick Cover home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 3h9l5 5v13H6z"/>
+            <path d="M15 3v6h5M9 13h8M9 17h8"/>
+          </svg>
+        </span>
+        <span class="brand-text">Quick <span>Cover</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" class="btn btn-secondary btn-sm">← Back to home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="editor-main">
+    <div class="workspace">
+      <!-- Left Column: Form Panel -->
+      <section class="panel form-panel" aria-label="Cover page details">
+        <div class="form-header">
+          <h1 class="panel-title">Your Information</h1>
+          <button type="button" id="clear-form" class="btn btn-secondary btn-sm">Start over</button>
+        </div>
+
+        <form id="cover-form" autocomplete="off" onsubmit="return false;">
+          <!-- 1. Document Type (Segmented Toggle) -->
+          <div class="field">
+            <label class="field-label">Document Type</label>
+            <div class="segmented">
+              <label class="segmented-btn">
+                <input type="radio" name="doc-type" id="doc-type-lab" value="lab-report" checked>
+                <span>Lab Report</span>
+              </label>
+              <label class="segmented-btn">
+                <input type="radio" name="doc-type" id="doc-type-assignment" value="assignment">
+                <span>Assignment</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 2. University Name -->
+          <div class="field">
+            <label for="university">University / Institution</label>
+            <input list="universities-list" id="university" placeholder="e.g. Bangladesh Army University of Science and Technology (BAUST), Saidpur">
+            <datalist id="universities-list"></datalist>
+          </div>
+
+          <!-- 3. Department -->
+          <div class="field">
+            <label for="department">Department</label>
+            <input list="departments-list" id="department" placeholder="e.g. Department of Computer Science and Engineering (CSE)">
+            <datalist id="departments-list"></datalist>
+          </div>
+
+          <!-- 4 & 5. Level & Term -->
+          <div class="two-col">
+            <div class="field">
+              <label for="level">Level</label>
+              <select id="level">
+                <option value="">—</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="term">Term</label>
+              <select id="term">
+                <option value="">—</option>
+                <option value="I">I</option>
+                <option value="II">II</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 6. Course Code -->
+          <div class="field">
+            <label for="course-code">Course Code</label>
+            <input list="course-codes-list" id="course-code" autocomplete="off" placeholder="Select department, level and term to narrow">
+            <datalist id="course-codes-list"></datalist>
+          </div>
+
+          <!-- 7. Course Title -->
+          <div class="field">
+            <label for="course-title">Course Title</label>
+            <input list="course-titles-list" id="course-title" autocomplete="off" placeholder="Course Title">
+            <datalist id="course-titles-list"></datalist>
+          </div>
+
+          <!-- 8. Report/Assignment No. -->
+          <div class="field">
+            <label for="doc-number" id="doc-number-label">Report no.:</label>
+            <input id="doc-number" placeholder="e.g. 01">
+          </div>
+
+          <!-- 9. Report/Assignment Title -->
+          <div class="field">
+            <label for="doc-title" id="doc-title-label">Report Title:</label>
+            <input id="doc-title" placeholder="e.g. Implementation of Responsive Static Cover Template">
+          </div>
+
+          <!-- 10. Comment -->
+          <div class="field">
+            <label for="comment">Comment</label>
+            <textarea id="comment" placeholder="Optional comments or teacher remarks"></textarea>
+          </div>
+
+          <!-- 11 & 12. Student Name & Student ID -->
+          <div class="two-col">
+            <div class="field">
+              <label for="student-name">Student Name</label>
+              <input id="student-name" placeholder="Full Name">
+            </div>
+            <div class="field">
+              <label for="student-id">Student ID</label>
+              <input id="student-id" placeholder="e.g. 210101001">
+            </div>
+          </div>
+
+          <!-- 13. Experiment Date (Lab Report only) -->
+          <div class="field" id="experiment-date-group">
+            <label for="experiment-date">Experiment Date</label>
+            <input type="date" id="experiment-date">
+          </div>
+
+          <!-- 14. Submission Date -->
+          <div class="field">
+            <label for="submission-date">Submission Date</label>
+            <input type="date" id="submission-date">
+          </div>
+
+          <!-- 15. Teachers (Multi-Teacher Dynamic List) -->
+          <fieldset id="teachers-fieldset" class="field">
+            <legend class="field-label">Submitted To (Teachers)</legend>
+            <div id="teachers-form-container">
+              <!-- Dynamically populated by create.js -->
+            </div>
+            <button type="button" id="add-teacher" class="btn btn-secondary btn-sm">Add teacher</button>
+          </fieldset>
+
+          <datalist id="teacher-roles-list">
+            <option value="Course Teacher">
+            <option value="Lab Instructor">
+            <option value="Supervisor">
+            <option value="Thesis Supervisor">
+            <option value="Academic Advisor">
+          </datalist>
+
+          <datalist id="teacher-designations-list">
+            <option value="Lecturer">
+            <option value="Assistant Professor">
+            <option value="Associate Professor">
+            <option value="Professor">
+            <option value="Adjunct Faculty">
+          </datalist>
+
+          <!-- 16. Logo Upload -->
+          <div class="field">
+            <label for="logo-upload">University Logo</label>
+            <div class="logo-upload-controls">
+              <input type="file" id="logo-upload" accept="image/*">
+              <div class="logo-btn-row">
+                <button type="button" id="remove-logo" class="btn btn-secondary btn-sm">Remove logo</button>
+              </div>
+              <span id="logo-error" class="error-text" role="alert"></span>
+            </div>
+          </div>
+
+          <!-- 17. Storage Status Line -->
+          <p id="storage-status" class="storage-status" role="status" aria-live="polite"></p>
+          <p class="hint">Changes are saved automatically to local storage and update the preview live.</p>
+        </form>
+      </section>
+
+      <!-- Right Column: Live A4 Preview -->
+      <section class="panel preview-panel" aria-label="A4 cover preview">
+        <div class="preview-toolbar">
+          <span>LIVE PREVIEW</span>
+          <span>A4 · Portrait</span>
+        </div>
+
+        <div class="paper-wrap">
+          <div class="preview-viewport" id="preview-viewport">
+            <div id="cover-preview">
+              <article class="a4-cover" data-cover-type="lab-report">
+                <!-- Institutional Header -->
+                <h1 class="university-header" data-field="university-name"></h1>
+                <h2 class="department-header" data-field="department-name"></h2>
+
+                <!-- Institutional Logo Placeholder -->
+                <div class="logo-box" aria-label="University Logo Placeholder">
+                  <svg viewBox="0 0 139 136" width="36.78mm" height="35.97mm" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="139" height="136" fill="#e5e7eb" stroke="#9ca3af" stroke-width="2" rx="4"/>
+                    <text x="50%" y="45%" text-anchor="middle" dominant-baseline="middle" font-family="'Times New Roman', Times, serif" font-size="16" font-weight="bold" fill="#4b5563">LOGO</text>
+                    <text x="50%" y="65%" text-anchor="middle" dominant-baseline="middle" font-family="'Times New Roman', Times, serif" font-size="11" fill="#6b7280">36.8 × 36 mm</text>
+                  </svg>
+                </div>
+
+                <!-- Title Banner & Measured Underline Bar -->
+                <h3 class="title-banner" data-field="cover-title">LAB REPORT</h3>
+                <div class="title-underline"></div>
+
+                <!-- Metadata Section -->
+                <section class="metadata-section">
+                  <div class="metadata-row meta-row-1">
+                    <span class="metadata-label">Course Code</span>
+                    <span class="metadata-colon">:</span>
+                    <span class="metadata-value" data-field="course-code"></span>
+                  </div>
+                  <div class="metadata-row meta-row-2">
+                    <span class="metadata-label">Course Title</span>
+                    <span class="metadata-colon">:</span>
+                    <span class="metadata-value" data-field="course-title"></span>
+                  </div>
+                  <div class="metadata-row meta-row-3">
+                    <span class="metadata-label" id="preview-doc-number-label">Report no.</span>
+                    <span class="metadata-colon">:</span>
+                    <span class="metadata-value" data-field="doc-number" data-field-alt="report-no"></span>
+                  </div>
+                  <div class="metadata-row meta-row-4">
+                    <span class="metadata-label" id="preview-doc-title-label">Report Title</span>
+                    <span class="metadata-colon">:</span>
+                    <span class="metadata-value" data-field="doc-title" data-field-alt="report-title"></span>
+                  </div>
+                  <div class="metadata-row meta-row-5">
+                    <span class="metadata-label">Comment</span>
+                    <span class="metadata-colon">:</span>
+                  </div>
+                </section>
+
+                <!-- Teacher Comment / Evaluation Area -->
+                <div class="comment-box" data-field="comment-box" aria-label="Teacher Comment Area"></div>
+
+                <!-- Left Card: Submitted By -->
+                <section class="card card-submitted-by" aria-labelledby="heading-submitted-by">
+                  <div class="card-title-wrap">
+                    <h4 id="heading-submitted-by" class="card-title">Submitted By:</h4>
+                    <span class="card-title-underline"></span>
+                  </div>
+
+                  <div class="card-field-row sub-by-row-name">
+                    <span class="card-field-label">Name:</span>
+                    <span class="card-field-value" data-field="student-name"></span>
+                  </div>
+
+                  <div class="card-field-row sub-by-row-id">
+                    <span class="card-field-label">ID:</span>
+                    <span class="card-field-value" data-field="student-id"></span>
+                  </div>
+
+                  <div class="card-field-row sub-by-row-level level-term-inline">
+                    <span class="level-sub-col">
+                      <span class="card-field-label">Level:</span>
+                      <span class="card-field-value" data-field="level"></span>
+                    </span>
+                    <span class="term-sub-col">
+                      <span class="card-field-label">Term:</span>
+                      <span class="card-field-value" data-field="term"></span>
+                    </span>
+                  </div>
+
+                  <div class="card-field-row sub-by-row-exp-date">
+                    <span class="card-field-label">Experiment Date:</span>
+                    <span class="card-field-value" data-field="experiment-date"></span>
+                  </div>
+
+                  <div class="card-field-row sub-by-row-sub-date">
+                    <span class="card-field-label">Submission Date:</span>
+                    <span class="card-field-value" data-field="submission-date"></span>
+                  </div>
+                </section>
+
+                <!-- Right Card: Submitted To -->
+                <section class="card card-submitted-to" aria-labelledby="heading-submitted-to">
+                  <div class="card-title-wrap">
+                    <h4 id="heading-submitted-to" class="card-title">Submitted To:</h4>
+                    <span class="card-title-underline"></span>
+                  </div>
+
+                  <div class="teachers-preview" data-field="teachers-list"></div>
+
+                  <div class="signature-row sub-to-row-sign">
+                    <span class="card-field-label">Signature &amp; Date:</span>
+                    <span class="signature-line">&nbsp;_________________</span>
+                  </div>
+                </section>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div class="editor-note">Your changes appear in the document preview as you type.</div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Shared Footer (Tool Page) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" aria-label="Quick Cover home">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M6 3h9l5 5v13H6z"/>
+                <path d="M15 3v6h5M9 13h8M9 17h8"/>
+              </svg>
+            </span>
+            <span class="brand-text">Quick <span>Cover</span></span>
+          </a>
+          <p class="small">Cover pages for university assignments and lab reports.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="create.html">Open the tool</a>
+          <a href="index.html">← Back to home</a>
+        </nav>
+      </div>
+      <p class="caption footer-fineprint">All processing happens in your browser. No account required. Drafts and logos are stored locally on this device.</p>
+      <p class="caption">© <span id="year">2026</span> Quick Cover</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/site.js"></script>
+  <script type="module" src="js/create.js"></script>
+</body>
+</html>

@@ -1,0 +1,449 @@
+/* Cover Page Generator — Shared Cover Styling (A4 Exact Geometry) */
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #f3f4f6;
+  font-family: "Times New Roman", Times, serif;
+  color: #000000;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Screen Preview Container & Header */
+.preview-stage {
+  padding: 0 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.preview-banner {
+  text-align: center;
+  padding: 12px 20px;
+  background-color: #1f2937;
+  color: #f9fafb;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  margin-top: 24px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.preview-banner a {
+  color: #93c5fd;
+  text-decoration: none;
+  margin-left: 12px;
+}
+
+.preview-banner a:hover {
+  text-decoration: underline;
+}
+
+/* A4 Sheet Root */
+.a4-cover {
+  width: 210mm;
+  height: 297mm;
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  font-family: "Times New Roman", Times, serif;
+  color: #000000;
+  line-height: 1.15;
+  margin: 0 auto;
+}
+
+/* Print Rules */
+@media print {
+  html, body {
+    background-color: #ffffff;
+  }
+  .preview-banner {
+    display: none !important;
+  }
+  .preview-stage {
+    padding: 0 !important;
+  }
+  .a4-cover {
+    box-shadow: none !important;
+    margin: 0 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* ==========================================================================
+   Header Elements (Common & Positioning)
+   ========================================================================== */
+
+.university-header {
+  position: absolute;
+  left: 0;
+  width: 210mm;
+  text-align: center;
+  font-size: 15.96pt;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+  padding: 0 14mm;
+}
+
+.department-header {
+  position: absolute;
+  left: 0;
+  width: 210mm;
+  text-align: center;
+  font-size: 14.04pt;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0 14mm;
+}
+
+/* Logo Placeholder Box (Fixed 36.78mm x 35.97mm) */
+.logo-box {
+  position: absolute;
+  left: 86.61mm;
+  width: 36.78mm;
+  height: 35.97mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+}
+
+.logo-box svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Title Banner & Underline */
+.title-banner {
+  position: absolute;
+  left: 0;
+  width: 210mm;
+  text-align: center;
+  font-size: 18pt;
+  font-weight: 700;
+  margin: 0;
+}
+
+.title-underline {
+  position: absolute;
+  background-color: #000000;
+}
+
+/* ==========================================================================
+   Metadata Section (Course & Report Info)
+   ========================================================================== */
+
+.metadata-section {
+  position: absolute;
+  font-size: 12pt;
+  font-weight: 700;
+}
+
+.metadata-row {
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+.metadata-label {
+  font-weight: 700;
+}
+
+.metadata-colon {
+  font-weight: 700;
+}
+
+.metadata-value {
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+/* Comment Box */
+.comment-box {
+  position: absolute;
+  left: 25.11mm;
+  width: 163.74mm;
+  border: 1pt solid #000000;
+  background-color: transparent;
+}
+
+/* ==========================================================================
+   Bottom Cards ("Submitted By" & "Submitted To")
+   ========================================================================== */
+
+.card {
+  position: absolute;
+  border: 1pt solid #000000;
+  background-color: #ffffff;
+  padding: 0;
+  font-size: 12pt;
+  font-weight: 700;
+}
+
+.card-title-wrap {
+  position: absolute;
+}
+
+.card-title {
+  font-size: 12pt;
+  font-weight: 700;
+  margin: 0;
+  display: inline-block;
+  line-height: 1;
+}
+
+.card-title-underline {
+  position: absolute;
+  left: 0;
+  bottom: -1.2mm;
+  width: 100%;
+  height: 0.43mm;
+  background-color: #000000;
+}
+
+.card-field-row {
+  position: absolute;
+  left: 2.8mm;
+  display: flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+.card-field-label {
+  font-weight: 700;
+}
+
+.card-field-value {
+  font-weight: 700;
+  margin-left: 6px;
+}
+
+.signature-row {
+  position: absolute;
+  display: flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+.signature-line {
+  letter-spacing: 0;
+}
+
+/* ==========================================================================
+   VARIANT: Lab Report ([data-cover-type="lab-report"])
+   ========================================================================== */
+
+/* Lab Report: Header Positions (Reflects corrected reference) */
+[data-cover-type="lab-report"] .university-header {
+  top: 25.30mm;
+}
+
+[data-cover-type="lab-report"] .department-header {
+  top: 42.63mm;
+}
+
+[data-cover-type="lab-report"] .logo-box {
+  top: 57.73mm;
+}
+
+[data-cover-type="lab-report"] .title-banner {
+  top: 98.80mm;
+  text-transform: uppercase;
+}
+
+[data-cover-type="lab-report"] .title-underline {
+  top: 105.13mm;
+  left: 84.98mm;
+  width: 40.10mm;
+  height: 0.60mm;
+}
+
+/* Lab Report: Metadata Positions */
+[data-cover-type="lab-report"] .metadata-section {
+  left: 25.20mm;
+}
+
+[data-cover-type="lab-report"] .meta-row-1 { top: 120.37mm; }
+[data-cover-type="lab-report"] .meta-row-2 { top: 130.10mm; }
+[data-cover-type="lab-report"] .meta-row-3 { top: 139.84mm; }
+[data-cover-type="lab-report"] .meta-row-4 { top: 149.58mm; }
+[data-cover-type="lab-report"] .meta-row-5 { top: 159.32mm; }
+
+[data-cover-type="lab-report"] .metadata-colon {
+  margin-left: 2px;
+}
+
+/* Lab Report: Comment Box */
+[data-cover-type="lab-report"] .comment-box {
+  top: 168.89mm;
+  height: 37.48mm;
+}
+
+/* Lab Report: Bottom Cards (Top: 213.22mm, Height: 66.13mm) */
+[data-cover-type="lab-report"] .card-submitted-by {
+  left: 25.59mm;
+  top: 213.22mm;
+  width: 79.33mm;
+  height: 66.13mm;
+}
+
+[data-cover-type="lab-report"] .card-submitted-by .card-title-wrap {
+  left: 2.74mm;
+  top: 1.64mm;
+}
+
+[data-cover-type="lab-report"] .card-submitted-to {
+  left: 105.75mm;
+  top: 213.22mm;
+  width: 82.44mm;
+  height: 66.13mm;
+}
+
+[data-cover-type="lab-report"] .card-submitted-to .card-title-wrap {
+  left: 2.73mm;
+  top: 1.64mm;
+}
+
+/* Lab Report: Field Row Offsets within "Submitted By" */
+[data-cover-type="lab-report"] .sub-by-row-name     { top: 11.37mm; }
+[data-cover-type="lab-report"] .sub-by-row-id       { top: 21.11mm; }
+[data-cover-type="lab-report"] .sub-by-row-level    { top: 30.85mm; }
+[data-cover-type="lab-report"] .sub-by-row-exp-date { top: 40.58mm; }
+[data-cover-type="lab-report"] .sub-by-row-sub-date { top: 50.32mm; }
+
+[data-cover-type="lab-report"] .level-term-inline {
+  display: flex;
+  align-items: baseline;
+}
+
+[data-cover-type="lab-report"] .term-sub-col {
+  margin-left: 12.5mm;
+}
+
+/* Lab Report: Field Row Offsets within "Submitted To" */
+[data-cover-type="lab-report"] .sub-to-row-teacher { top: 11.39mm; }
+[data-cover-type="lab-report"] .sub-to-row-desig   { top: 21.13mm; }
+[data-cover-type="lab-report"] .sub-to-row-sign    { left: 2.73mm; top: 60.08mm; }
+
+/* ==========================================================================
+   VARIANT: Assignment ([data-cover-type="assignment"])
+   ========================================================================== */
+
+/* Assignment: Header Positions */
+[data-cover-type="assignment"] .university-header {
+  top: 25.30mm;
+}
+
+[data-cover-type="assignment"] .department-header {
+  top: 42.63mm;
+}
+
+[data-cover-type="assignment"] .logo-box {
+  top: 57.73mm;
+}
+
+[data-cover-type="assignment"] .title-banner {
+  top: 94.05mm;
+  text-transform: none;
+}
+
+[data-cover-type="assignment"] .title-underline {
+  top: 100.39mm;
+  left: 90.06mm;
+  width: 29.98mm;
+  height: 0.59mm;
+}
+
+/* Assignment: Metadata Positions with Aligned Colon Gutter at x = 61.95mm */
+/* Left margin = 27.02mm, so colon offset from metadata-section = 61.95 - 27.02 = 34.93mm */
+[data-cover-type="assignment"] .metadata-section {
+  left: 27.02mm;
+}
+
+[data-cover-type="assignment"] .meta-row-1 { top: 115.63mm; }
+[data-cover-type="assignment"] .meta-row-2 { top: 125.36mm; }
+[data-cover-type="assignment"] .meta-row-3 { top: 135.10mm; }
+[data-cover-type="assignment"] .meta-row-4 { top: 144.84mm; }
+[data-cover-type="assignment"] .meta-row-5 { top: 154.54mm; }
+
+[data-cover-type="assignment"] .metadata-label {
+  display: inline-block;
+  width: 34.93mm;
+}
+
+[data-cover-type="assignment"] .metadata-colon {
+  display: inline-block;
+}
+
+/* Assignment: Comment Box */
+[data-cover-type="assignment"] .comment-box {
+  top: 168.98mm;
+  height: 22.39mm;
+}
+
+/* Assignment: Bottom Cards (Top: 203.31mm, Height: 58.64mm) */
+[data-cover-type="assignment"] .card-submitted-by {
+  left: 24.94mm;
+  top: 203.31mm;
+  width: 81.17mm;
+  height: 58.64mm;
+}
+
+[data-cover-type="assignment"] .card-submitted-by .card-title-wrap {
+  left: 4.70mm;
+  top: 0.73mm;
+}
+
+[data-cover-type="assignment"] .card-submitted-to {
+  left: 106.62mm;
+  top: 203.31mm;
+  width: 82.57mm;
+  height: 58.64mm;
+}
+
+[data-cover-type="assignment"] .card-submitted-to .card-title-wrap {
+  left: 4.19mm;
+  top: 0.73mm;
+}
+
+/* Assignment: Field Row Offsets within "Submitted By" */
+[data-cover-type="assignment"] .sub-by-row-name     { top: 11.31mm; }
+[data-cover-type="assignment"] .sub-by-row-id       { top: 21.89mm; }
+[data-cover-type="assignment"] .sub-by-row-level    { top: 32.43mm; }
+[data-cover-type="assignment"] .sub-by-row-sub-date { top: 43.02mm; }
+
+[data-cover-type="assignment"] .sub-by-row-exp-date {
+  display: none !important; /* No Experiment Date in Assignment Cover */
+}
+
+[data-cover-type="assignment"] .level-term-inline {
+  display: flex;
+  align-items: baseline;
+}
+
+[data-cover-type="assignment"] .term-sub-col {
+  margin-left: 10mm;
+}
+
+/* Assignment: Field Row Offsets within "Submitted To" */
+[data-cover-type="assignment"] .sub-to-row-teacher { top: 9.19mm; }
+[data-cover-type="assignment"] .sub-to-row-desig   { top: 18.93mm; }
+[data-cover-type="assignment"] .sub-to-row-sign    { left: 2.8mm; top: 49.87mm; }
