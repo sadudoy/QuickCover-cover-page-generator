@@ -318,6 +318,13 @@
   letter-spacing: 0.5px;
 }
 
+.print-hint {
+  font-weight: 400;
+  letter-spacing: normal;
+  color: #64748b;
+  text-align: center;
+}
+
 .paper-wrap {
   width: min(100%, 650px);
   display: flex;

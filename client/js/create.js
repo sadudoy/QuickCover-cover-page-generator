@@ -1038,6 +1038,18 @@ async function init() {
     clearFormBtn.addEventListener('click', handleClearForm);
   }
 
+  // Print / Save as PDF button
+  const printCoverBtn = document.getElementById('print-cover');
+  if (printCoverBtn) {
+    printCoverBtn.addEventListener('click', () => {
+      if (typeof window.print === 'function') {
+        window.print();
+      } else {
+        setStorageStatus('Printing is not supported in this browser.', 'warning');
+      }
+    });
+  }
+
   // Cross-tab storage synchronization
   window.addEventListener('storage', onStorageChange);
 }

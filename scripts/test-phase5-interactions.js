@@ -319,15 +319,18 @@ try {
   `);
 
   // Wait for Tab A save + Tab B storage event processing
-  await new Promise(r => setTimeout(r, 800));
-
-  const resTabB = await cdpB.eval(`
-    (() => ({
-      name: document.getElementById('student-name').value,
-      status: document.getElementById('storage-status').textContent,
-      previewName: document.querySelector('[data-field="student-name"]').textContent
-    }))()
-  `);
+  let resTabB = null;
+  for (let i = 0; i < 20; i++) {
+    await new Promise(r => setTimeout(r, 150));
+    resTabB = await cdpB.eval(`
+      (() => ({
+        name: document.getElementById('student-name').value,
+        status: document.getElementById('storage-status').textContent,
+        previewName: document.querySelector('[data-field="student-name"]').textContent
+      }))()
+    `);
+    if (resTabB && resTabB.name === 'Cross Tab Alice') break;
+  }
 
   if (
     resTabB &&
@@ -342,15 +345,19 @@ try {
 
   // Now, in Tab B, clear the draft via clear-form
   await cdpB.eval(`document.getElementById('clear-form').click()`);
-  await new Promise(r => setTimeout(r, 600));
 
   // Check Tab A: should surface "Draft was cleared in another tab." and NOT wipe its in-memory form
-  const resTabAAfterClear = await cdpA.eval(`
-    (() => ({
-      name: document.getElementById('student-name').value,
-      status: document.getElementById('storage-status').textContent
-    }))()
-  `);
+  let resTabAAfterClear = null;
+  for (let i = 0; i < 20; i++) {
+    await new Promise(r => setTimeout(r, 150));
+    resTabAAfterClear = await cdpA.eval(`
+      (() => ({
+        name: document.getElementById('student-name').value,
+        status: document.getElementById('storage-status').textContent
+      }))()
+    `);
+    if (resTabAAfterClear && resTabAAfterClear.status === 'Draft was cleared in another tab.') break;
+  }
 
   if (
     resTabAAfterClear &&

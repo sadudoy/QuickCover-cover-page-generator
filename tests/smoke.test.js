@@ -600,3 +600,32 @@ test('smoke: storage.js wraps localStorage access with try/catch and handles Quo
   assert.match(storageJs, /QuotaExceededError/, 'storage.js must explicitly handle QuotaExceededError');
   assert.match(storageJs, /try\s*\{[^}]*localStorage/s, 'storage.js must wrap localStorage access in try/catch');
 });
+
+/* Phase 06: Export & Print Fidelity Assertions */
+
+test('smoke: client/create.html contains id="print-cover" and links css/print.css with media="print"', () => {
+  const createHtml = fs.readFileSync(path.join(ROOT_DIR, 'client', 'create.html'), 'utf-8');
+  assert.match(createHtml, /id=["']print-cover["']/, 'create.html must contain id="print-cover"');
+  assert.match(
+    createHtml,
+    /<link[^>]+href=["']css\/print\.css["'][^>]+media=["']print["']|<link[^>]+media=["']print["'][^>]+href=["']css\/print\.css["']/,
+    'create.html must link css/print.css with media="print"'
+  );
+});
+
+test('smoke: client/css/print.css exists and contains @page with size: A4 and margin: 0', () => {
+  const printCssPath = path.join(ROOT_DIR, 'client', 'css', 'print.css');
+  assert.equal(fs.existsSync(printCssPath), true, 'client/css/print.css must exist');
+  const printCss = fs.readFileSync(printCssPath, 'utf-8');
+  assert.match(printCss, /@page\s*\{[^}]*size:\s*A4/i, 'print.css must define @page size: A4');
+  assert.match(printCss, /@page\s*\{[^}]*margin:\s*0/i, 'print.css must define @page margin: 0');
+});
+
+test('smoke: client/css/print.css hides chrome (.site-header, .form-panel, .site-footer) and unscales preview', () => {
+  const printCss = fs.readFileSync(path.join(ROOT_DIR, 'client', 'css', 'print.css'), 'utf-8');
+  assert.match(printCss, /@media\s+print\s*\{/i, 'print.css must contain @media print block');
+  assert.match(printCss, /\.site-header[^}]*display:\s*none\s*!important/s, 'print.css must hide .site-header');
+  assert.match(printCss, /\.form-panel[^}]*display:\s*none\s*!important/s, 'print.css must hide .form-panel');
+  assert.match(printCss, /\.site-footer[^}]*display:\s*none\s*!important/s, 'print.css must hide .site-footer');
+  assert.match(printCss, /transform:\s*none\s*!important/, 'print.css must contain transform: none !important');
+});
